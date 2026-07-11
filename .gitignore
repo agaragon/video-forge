@@ -1,0 +1,4 @@
+/bin/
+/scratch/
+*.log
+.DS_Store

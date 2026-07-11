@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>video-forge</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>video-forge</h1>
+      <p class="tagline">Upload an image, audio, or video file and transcode it — no command line required.</p>
+    </header>
+
+    <section id="step-upload" class="card">
+      <h2>1. Upload</h2>
+      <form id="upload-form">
+        <input type="file" id="file-input" name="file" required />
+        <button type="submit">Upload</button>
+      </form>
+      <p id="upload-status" class="status"></p>
+    </section>
+
+    <section id="step-configure" class="card hidden">
+      <h2>2. Configure</h2>
+      <dl id="source-info" class="info-grid"></dl>
+      <form id="job-form">
+        <label>
+          Output format
+          <select id="output-format" name="output_format" required></select>
+        </label>
+        <div class="grid-2">
+          <label>Width (optional)<input type="number" id="width" min="1" max="7680" /></label>
+          <label>Height (optional)<input type="number" id="height" min="1" max="7680" /></label>
+        </div>
+        <div class="grid-2">
+          <label>Frame rate (optional, video)<input type="number" id="frame-rate" min="0" max="240" step="0.01" /></label>
+          <label>
+            Sample rate (audio)
+            <select id="sample-rate">
+              <option value="0">source default</option>
+              <option value="44100">44100 Hz</option>
+              <option value="48000">48000 Hz</option>
+              <option value="22050">22050 Hz</option>
+              <option value="16000">16000 Hz</option>
+            </select>
+          </label>
+        </div>
+        <label>Bit rate (optional, e.g. 2M, 128k)<input type="text" id="bit-rate" placeholder="e.g. 2M" /></label>
+        <button type="submit">Start encoding job</button>
+      </form>
+    </section>
+
+    <section id="step-progress" class="card hidden">
+      <h2>3. Progress</h2>
+      <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+      <p id="progress-text" class="status">Queued…</p>
+      <button id="cancel-btn" type="button">Cancel job</button>
+    </section>
+
+    <section id="step-done" class="card hidden">
+      <h2>4. Download</h2>
+      <p id="done-text" class="status"></p>
+      <a id="download-link" class="button" href="#" download>Download result</a>
+    </section>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
